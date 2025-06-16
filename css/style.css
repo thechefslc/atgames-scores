@@ -1,0 +1,182 @@
+:root {
+    /* Light Mode Variables */
+    --body-bg: #f0f2f5;
+    --text-color: #333;
+    --section-bg: #ffffff;
+    --section-border: #e0e0e0;
+    --title-color: #2c3e50;
+    --main-title-color: #007bff;
+    --table-header-bg: #e9ecef;
+    --table-header-text: #495057;
+    --table-row-hidden-bg: #f8f9fa;
+}
+
+body.dark-mode {
+    /* Dark Mode Variables */
+    --body-bg: #212529; /* Dark grey */
+    --text-color: #e2e6ea; /* Light grey for text */
+    --section-bg: #2d3135; /* Slightly lighter dark grey for sections */
+    --section-border: #444;
+    --title-color: #8ab4f8; /* Lighter blue for titles */
+    --main-title-color: #8ab4f8; /* Consistent main title */
+    --table-header-bg: #343a40; /* Darker header */
+    --table-header-text: #e2e6ea;
+    --table-row-hidden-bg: #2a2e32; /* Even darker for hidden rows */
+}
+
+body {
+    padding: 20px;
+    background-color: var(--body-bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+.container {
+    max-width: 1100px; /* Adjusted max-width as per your last index.html */
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.section {
+    background-color: var(--section-bg);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    border: 1px solid var(--section-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.section-title {
+    font-size: 1.8rem;
+    color: var(--title-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+h1 {
+    color: var(--main-title-color);
+    font-weight: 700;
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+}
+.loading-spinner {
+    display: none;
+    text-align: center;
+    margin-top: 30px;
+    color: var(--main-title-color); /* Matches main title color */
+}
+.loading-spinner .spinner-border {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.table-responsive {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--section-border); /* Use section border for table responsive container */
+    transition: border-color 0.3s ease;
+}
+.table {
+    margin-bottom: 0;
+    color: var(--text-color); /* Table text color */
+}
+.table thead {
+    background-color: var(--table-header-bg);
+    color: var(--table-header-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-color: var(--section-border); /* Table cell borders */
+}
+/* Ensure text color is correct in dark mode for table cells */
+body.dark-mode .table th,
+body.dark-mode .table td {
+    color: var(--text-color); 
+}
+/* Override Bootstrap table stripe color for dark mode */
+body.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: var(--section-bg); /* Use section bg for odd rows */
+}
+body.dark-mode .table-striped > tbody > tr:nth-of-type(even) > * {
+    background-color: var(--body-bg); /* Use body bg for even rows */
+}
+
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+.btn-outline-secondary { /* Hide button */
+    color: var(--text-color);
+    border-color: var(--text-color);
+}
+.btn-outline-secondary:hover {
+    background-color: var(--text-color);
+    color: var(--section-bg);
+}
+.btn-outline-success { /* Show button */
+    color: #28a745;
+    border-color: #28a745;
+}
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.alert {
+    border-radius: 8px;
+}
+/* Sorting indicators */
+.sortable th {
+    cursor: pointer; /* Indicate it's clickable */
+    position: relative;
+    padding-right: 30px; /* Make space for the arrow */
+}
+.sortable th.asc::after {
+    content: " \25B2"; /* Up arrow for ascending */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+}
+.sortable th.desc::after {
+    content: " \25BC"; /* Down arrow for descending */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+}
+.last-updated-text {
+    text-align: right;
+    font-size: 0.9em;
+    color: var(--text-color); /* Use general text color */
+    margin-top: -15px; /* Pull it up slightly */
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+/* Style for hidden rows */
+tr.score-row.hidden {
+    opacity: 0.5; /* Slightly faded */
+    background-color: var(--table-row-hidden-bg) !important; /* Lighter background, !important to override .table-striped */
+    font-style: italic;
+    color: var(--text-color); /* Maintain readability */
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+/* Position for the theme toggle switch */
+.theme-toggle-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
